@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f4">
+  <title>Report a Lost Item | Campus Find</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('lost_items.static', filename='report_lost.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ home_url }}" aria-label="Campus Find home">
+      <span class="brand-mark" aria-hidden="true">cf</span>
+      <span>campus<span class="brand-light">find</span></span>
+    </a>
+    <a class="back-link" href="{{ home_url }}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7M8 12h12"/></svg>
+      <span>Back to Home</span>
+    </a>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> COMMUNITY CARE STARTS HERE</div>
+      <h1 id="page-title">Report a Lost Item<span class="title-period">.</span></h1>
+      <p>Help us find your lost belongings by providing the details below.</p>
+    </section>
+
+    <section class="form-panel" aria-label="Lost item report form">
+      <div class="panel-heading">
+        <div class="panel-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 21s7-4.4 7-11V5l-7-3-7 3v5c0 6.6 7 11 7 11Z"/><path d="M9 12h6m-3-3v6"/></svg>
+        </div>
+        <div>
+          <h2>Item details</h2>
+          <p>Fields marked <span class="required-mark">*</span> are required</p>
+        </div>
+      </div>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+          <div class="notice notice-{{ category }}" role="status">{{ message }}</div>
+        {% endfor %}
+      {% endwith %}
+      {% if errors.get('form') %}
+        <div class="notice notice-error" role="alert">{{ errors.get('form') }}</div>
+      {% endif %}
+
+      <form method="post" enctype="multipart/form-data" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="item_name">Item name <span class="required-mark">*</span></label>
+            <input id="item_name" name="item_name" type="text" maxlength="120" placeholder="e.g. Mobile phone, wallet, ID card" value="{{ values.get('item_name', '') }}" required aria-describedby="item_name_error">
+            {% if errors.get('item_name') %}<span class="field-error" id="item_name_error">{{ errors.get('item_name') }}</span>{% endif %}
+          </div>
+
+          <div class="field">
+            <label for="category">Item category <span class="required-mark">*</span></label>
+            <select id="category" name="category" required aria-describedby="category_error">
+              <option value="" disabled {% if not values.get('category') %}selected{% endif %}>Choose a category</option>
+              {% for category in categories %}
+                <option value="{{ category }}" {% if values.get('category') == category %}selected{% endif %}>{{ category }}</option>
+              {% endfor %}
+            </select>
+            {% if errors.get('category') %}<span class="field-error" id="category_error">{{ errors.get('category') }}</span>{% endif %}
+          </div>
+
+          <div class="field field-wide">
+            <div class="label-row">
+              <label for="description">Item description <span class="required-mark">*</span></label>
+              <span class="field-hint">Colour, brand, marks or other details</span>
+            </div>
+            <textarea id="description" name="description" rows="4" maxlength="2000" placeholder="Tell us what makes this item recognizable..." required aria-describedby="description_error">{{ values.get('description', '') }}</textarea>
+            <div class="textarea-foot"><span class="field-error" id="description_error">{{ errors.get('description', '') }}</span><span class="counter" data-counter-for="description">0 / 2000</span></div>
+          </div>
+
+          <div class="field">
+            <label for="location">Where did you lose it? <span class="required-mark">*</span></label>
+            <input id="location" name="location" type="text" maxlength="160" placeholder="e.g. Central library, second floor" value="{{ values.get('location', '') }}" required aria-describedby="location_error">
+            {% if errors.get('location') %}<span class="field-error" id="location_error">{{ errors.get('location') }}</span>{% endif %}
+          </div>
+
+          <div class="field">
+            <label for="date_lost">Date lost <span class="required-mark">*</span></label>
+            <input id="date_lost" name="date_lost" type="date" max="{{ today }}" value="{{ values.get('date_lost', '') }}" required aria-describedby="date_lost_error">
+            {% if errors.get('date_lost') %}<span class="field-error" id="date_lost_error">{{ errors.get('date_lost') }}</span>{% endif %}
+          </div>
+
+          <div class="field field-wide">
+            <label for="image">Item image <span class="optional-label">OPTIONAL</span></label>
+            <label class="upload-box" for="image">
+              <span class="upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V4m-4 4 4-4 4 4"/><path d="M5 14v5h14v-5"/></svg></span>
+              <span class="upload-copy"><strong>Choose an image</strong><span>JPG or PNG · up to 5 MB</span></span>
+              <span class="upload-action">Browse</span>
+              <input id="image" name="image" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" aria-describedby="image_error image_name">
+            </label>
+            <div class="upload-meta"><span class="field-error" id="image_error">{{ errors.get('image', '') }}</span><span id="image_name" class="file-name" aria-live="polite"></span></div>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <p><span class="lock-icon" aria-hidden="true">&#9679;</span> Your report is linked to your campus account.</p>
+          <button class="submit-button" type="submit">
+            Submit report
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </button>
+        </div>
+      </form>
+    </section>
+    <footer class="page-footer">A little detail can make a big difference.</footer>
+  </main>
+  <script src="{{ url_for('lost_items.static', filename='report_lost.js') }}" defer></script>
+</body>
+</html>
