@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Browse Lost &amp; Found Items | Campus Connect</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/browse.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navigation" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="Campus Connect home">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span>Campus<span class="brand-light">Connect</span></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span class="sr-only">Toggle navigation</span>
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="/">Home</a>
+        <a href="/report-lost">Report Lost</a>
+        <a href="/report-found">Report Found</a>
+        <a class="active" href="/browse" aria-current="page">Browse Items</a>
+        <a href="/dashboard">Dashboard</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-heading">
+      <div>
+        <p class="eyebrow"><span class="eyebrow-dot"></span> CAMPUS LOST &amp; FOUND</p>
+        <h1>Browse Lost &amp; Found Items</h1>
+        <p class="subtitle">Find items reported lost or found on campus.</p>
+      </div>
+      <div class="heading-art" aria-hidden="true">
+        <span class="art-circle"></span><span class="art-spark">✦</span>
+        <span class="art-search"></span>
+      </div>
+    </section>
+
+    <form class="search-bar" id="search-form" role="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+      <label class="sr-only" for="search-input">Search by item, keyword, or location</label>
+      <input id="search-input" type="search" placeholder="Search item name, keywords, or location..." autocomplete="off">
+      <button type="submit">Search <span aria-hidden="true">→</span></button>
+    </form>
+
+    <div class="results-layout">
+      <aside class="filter-panel" aria-labelledby="filter-title">
+        <div class="filter-heading">
+          <div>
+            <h2 id="filter-title">Filters</h2>
+            <p>Refine your search</p>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10m-7 6h4"></path></svg>
+        </div>
+        <div class="filter-group">
+          <h3>Item type</h3>
+          <label class="radio-option"><input type="radio" name="type" value="" checked><span class="radio-dot"></span>All items</label>
+          <label class="radio-option"><input type="radio" name="type" value="Lost"><span class="radio-dot"></span>Lost</label>
+          <label class="radio-option"><input type="radio" name="type" value="Found"><span class="radio-dot"></span>Found</label>
+        </div>
+        <div class="filter-group">
+          <label class="select-label" for="category-filter">Category</label>
+          <select id="category-filter">
+            <option value="">All categories</option>
+            <option>Electronics</option><option>Books</option><option>Accessories</option>
+            <option>Documents</option><option>Others</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="select-label" for="location-filter">Location</label>
+          <select id="location-filter">
+            <option value="">All locations</option>
+            <option>Library</option><option>Classroom</option><option>Canteen</option>
+            <option>Parking Area</option><option>Other Locations</option>
+          </select>
+        </div>
+        <button class="clear-filters" id="clear-filters" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 2.64-6.36L3 8m0-5v5h5"></path></svg>
+          Clear all filters
+        </button>
+      </aside>
+
+      <section class="items-section" aria-labelledby="items-title">
+        <div class="results-heading">
+          <div>
+            <h2 id="items-title">Recently reported</h2>
+            <p id="result-count" aria-live="polite">Loading items...</p>
+          </div>
+          <span class="sort-label"><span class="sort-dot"></span>Newest first</span>
+        </div>
+        <div class="notice" id="page-notice" role="status" hidden></div>
+        <div class="item-grid" id="item-grid" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span class="footer-mark">C</span>
+    <p>Campus Connect <span>·</span> Helping good things find their way back.</p>
+  </footer>
+
+  <dialog class="details-dialog" id="details-dialog" aria-labelledby="details-title">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close details">×</button>
+    <div id="details-content"></div>
+  </dialog>
+  <script src="{{ url_for('static', filename='js/browse.js') }}" defer></script>
+</body>
+</html>
