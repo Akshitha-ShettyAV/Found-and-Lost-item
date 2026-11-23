@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102a56">
+  <meta name="description" content="Student registration and login for the Campus Lost & Found Portal.">
+  <title>Campus Lost &amp; Found Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="page-shell">
+    <section class="welcome-screen" id="welcome-view" aria-labelledby="welcome-title">
+      <header class="landing-header">
+        <a class="landing-brand" href="#" data-view="welcome" aria-label="CampusConnect welcome page">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path d="M5 18.5 24 9l19 9.5L24 28 5 18.5Z" fill="currentColor"/>
+              <path d="M13 23v9.2c6.4 5.2 15.6 5.2 22 0V23l-11 5.5L13 23Z" fill="currentColor" opacity=".8"/>
+              <path d="M42 20v11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="42" cy="34" r="2" fill="currentColor"/>
+            </svg>
+          </span>
+          <span>Campus<span class="brand-light">Connect</span></span>
+        </a>
+        <button class="landing-login text-link" type="button" data-view="login">Admin login <span aria-hidden="true">→</span></button>
+      </header>
+
+      <div class="landing-content">
+        <div class="landing-copy">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> YOUR CAMPUS, CONNECTED</span>
+          <h1 id="welcome-title">Welcome to the<br>Campus Lost <span>&amp; Found</span> Portal</h1>
+          <p>Good things find their way back. Join your campus community and help make it happen.</p>
+          <div class="landing-actions">
+            <button class="landing-primary" type="button" data-view="register">Get started <span aria-hidden="true">→</span></button>
+            <button class="landing-secondary" type="button" data-view="login">I already have an account</button>
+          </div>
+          <div class="landing-note"><span class="landing-note-icon" aria-hidden="true">✦</span> A little kindness goes a long way on campus.</div>
+        </div>
+
+        <div class="landing-art" aria-hidden="true">
+          <div class="landing-art-orbit orbit-one"></div>
+          <div class="landing-art-orbit orbit-two"></div>
+          <div class="landing-art-sun"></div>
+          <svg class="landing-building" viewBox="0 0 560 300" fill="none">
+            <path d="M40 266h480" stroke="#A8D9E7" stroke-width="3" stroke-linecap="round"/>
+            <path d="M96 266V140h368v126" fill="#F8FCFF"/>
+            <path d="M78 142h404L280 65 78 142Z" fill="#D9F0F6"/>
+            <path d="M78 142h404" stroke="#86BDCF" stroke-width="5"/>
+            <path d="M112 151v106M177 151v106M242 151v106M307 151v106M372 151v106M437 151v106" stroke="#B4DCE6" stroke-width="5"/>
+            <path d="M216 266v-54a64 64 0 0 1 128 0v54" fill="#E5F4F8"/>
+            <path d="M263 266v-50a17 17 0 0 1 34 0v50" fill="#B5DDE7"/>
+            <path d="M268 174a12 12 0 1 0 24 0 12 12 0 0 0-24 0Z" fill="#B5DDE7"/>
+            <path d="M82 266V174h15v92M463 266V174h15v92" fill="#D9F0F6"/>
+            <path d="M72 266h416" stroke="#86BDCF" stroke-width="5"/>
+            <path d="M63 266h434" stroke="#F8FCFF" stroke-width="11" stroke-linecap="round"/>
+            <path d="M50 266h460" stroke="#A8D9E7" stroke-width="3" stroke-linecap="round"/>
+            <path d="M46 266c6-22 15-33 27-33s21 11 27 33M460 266c6-22 15-33 27-33s21 11 27 33" fill="#A8D9E7"/>
+            <path d="M49 266v-40M96 266v-40M463 266v-40M510 266v-40" stroke="#79B5C9" stroke-width="4" stroke-linecap="round"/>
+            <path d="M59 199c0-15 7-25 16-25s16 10 16 25M473 199c0-15 7-25 16-25s16 10 16 25" stroke="#79B5C9" stroke-width="4"/>
+          </svg>
+          <div class="landing-art-ground"></div>
+          <div class="landing-art-card">
+            <span class="landing-art-card-icon" aria-hidden="true">✧</span>
+            <span><strong>One campus.</strong><br>A community that cares.</span>
+          </div>
+          <span class="landing-star landing-star-one">✦</span>
+          <span class="landing-star landing-star-two">✧</span>
+        </div>
+      </div>
+      <footer class="landing-footer">A more connected campus starts here <span>·</span> Made for campus life</footer>
+    </section>
+
+    <section class="auth-card" aria-label="Campus Lost and Found student account" hidden>
+      <aside class="welcome-panel">
+        <a class="brand" href="#" data-view="welcome" aria-label="Campus Lost and Found Portal home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path d="M5 18.5 24 9l19 9.5L24 28 5 18.5Z" fill="currentColor"/>
+              <path d="M13 23v9.2c6.4 5.2 15.6 5.2 22 0V23l-11 5.5L13 23Z" fill="currentColor" opacity=".8"/>
+              <path d="M42 20v11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="42" cy="34" r="2" fill="currentColor"/>
+            </svg>
+          </span>
+          <span>Campus<span class="brand-light">Connect</span></span>
+        </a>
+
+        <div class="welcome-copy">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> YOUR CAMPUS, CONNECTED</span>
+          <h1>Campus Lost<br>&amp; Found Portal</h1>
+          <p>A little help from your campus community can make a lost item feel found again.</p>
+        </div>
+
+        <div class="campus-art" aria-hidden="true">
+          <div class="art-sun"></div>
+          <div class="art-cloud cloud-one"></div>
+          <div class="art-cloud cloud-two"></div>
+          <svg class="campus-building" viewBox="0 0 560 300" fill="none">
+            <path d="M40 266h480" stroke="#A8D9E7" stroke-width="3" stroke-linecap="round"/>
+            <path d="M96 266V140h368v126" fill="#F8FCFF"/>
+            <path d="M78 142h404L280 65 78 142Z" fill="#D9F0F6"/>
+            <path d="M78 142h404" stroke="#86BDCF" stroke-width="5"/>
+            <path d="M112 151v106M177 151v106M242 151v106M307 151v106M372 151v106M437 151v106" stroke="#B4DCE6" stroke-width="5"/>
+            <path d="M216 266v-54a64 64 0 0 1 128 0v54" fill="#E5F4F8"/>
+            <path d="M263 266v-50a17 17 0 0 1 34 0v50" fill="#B5DDE7"/>
+            <path d="M268 174a12 12 0 1 0 24 0 12 12 0 0 0-24 0Z" fill="#B5DDE7"/>
+            <path d="M82 266V174h15v92M463 266V174h15v92" fill="#D9F0F6"/>
+            <path d="M72 266h416" stroke="#86BDCF" stroke-width="5"/>
+            <path d="M63 266h434" stroke="#F8FCFF" stroke-width="11" stroke-linecap="round"/>
+            <path d="M50 266h460" stroke="#A8D9E7" stroke-width="3" stroke-linecap="round"/>
+            <path d="M46 266c6-22 15-33 27-33s21 11 27 33M460 266c6-22 15-33 27-33s21 11 27 33" fill="#A8D9E7"/>
+            <path d="M49 266v-40M96 266v-40M463 266v-40M510 266v-40" stroke="#79B5C9" stroke-width="4" stroke-linecap="round"/>
+            <path d="M59 199c0-15 7-25 16-25s16 10 16 25" stroke="#79B5C9" stroke-width="4"/>
+            <path d="M473 199c0-15 7-25 16-25s16 10 16 25" stroke="#79B5C9" stroke-width="4"/>
+          </svg>
+          <div class="art-ground"></div>
+          <div class="quote-card">
+            <span class="quote-icon" aria-hidden="true">“</span>
+            <p>Good things find their way back.</p>
+            <span>— Your campus community</span>
+          </div>
+          <span class="art-sparkle sparkle-one" aria-hidden="true">✦</span>
+          <span class="art-sparkle sparkle-two" aria-hidden="true">✧</span>
+        </div>
+
+        <p class="panel-footer">A more connected campus starts here.</p>
+      </aside>
+
+      <section class="form-panel">
+        <div class="mobile-brand" aria-hidden="true">
+          <span class="brand-mark">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path d="M5 18.5 24 9l19 9.5L24 28 5 18.5Z" fill="currentColor"/>
+              <path d="M13 23v9.2c6.4 5.2 15.6 5.2 22 0V23l-11 5.5L13 23Z" fill="currentColor" opacity=".8"/>
+              <path d="M42 20v11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="42" cy="34" r="2" fill="currentColor"/>
+            </svg>
+          </span>
+          <span>Campus<span class="brand-light">Connect</span></span>
+        </div>
+
+        <div class="form-content">
+          <button class="back-to-welcome text-link" type="button" data-view="welcome"><span aria-hidden="true">←</span> Back to welcome</button>
+          <section class="auth-view" id="login-view" aria-labelledby="login-title">
+            <div class="form-heading">
+              <span class="form-kicker">WELCOME BACK</span>
+              <h2 id="login-title">Sign in to your account</h2>
+              <p>Pick up where your campus community left off.</p>
+            </div>
+            <form id="login-form" novalidate>
+              <div class="field">
+                <label for="login-email">Email address</label>
+                <input id="login-email" name="email" type="email" placeholder="you@college.edu" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <div class="label-row">
+                  <label for="login-password">Password</label>
+                  <button class="text-link forgot-link" id="forgot-password" type="button">Forgot password?</button>
+                </div>
+                <div class="password-wrap">
+                  <input id="login-password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+                  <button class="visibility-toggle" type="button" data-password-target="login-password" aria-label="Show password" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.2-6 9.5-6 9.5 6 9.5 6-3.2 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="form-options">
+                <label class="checkbox-label" for="remember-me">
+                  <input id="remember-me" name="remember" type="checkbox">
+                  <span class="custom-checkbox" aria-hidden="true"></span>
+                  Remember me
+                </label>
+              </div>
+              <p class="form-message" id="login-message" role="status" aria-live="polite"></p>
+              <button class="submit-button" type="submit">Sign in <span aria-hidden="true">→</span></button>
+            </form>
+            <p class="switch-prompt">New to the community? <button class="text-link switch-link" type="button" data-view="register">Create an account</button></p>
+          </section>
+
+          <section class="auth-view is-hidden" id="register-view" aria-labelledby="register-title" hidden>
+            <div class="form-heading">
+              <span class="form-kicker">JOIN YOUR CAMPUS</span>
+              <h2 id="register-title">Create your account</h2>
+              <p>Set up your student profile in just a few steps.</p>
+            </div>
+            <form id="register-form" novalidate>
+              <div class="field">
+                <label for="full-name">Full name</label>
+                <input id="full-name" name="fullName" type="text" placeholder="e.g. Alex Morgan" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="student-id">Student USN / ID</label>
+                <input id="student-id" name="studentId" type="text" placeholder="Enter your student ID" autocomplete="off" required>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="register-email">Email address</label>
+                  <input id="register-email" name="email" type="email" placeholder="you@college.edu" autocomplete="email" required>
+                </div>
+                <div class="field">
+                  <label for="phone">Indian phone number</label>
+                  <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel" required>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="department">Department</label>
+                  <select id="department" name="department" required>
+                    <option value="" disabled selected>Select department</option>
+                    <option>Computer Science</option>
+                    <option>Engineering</option>
+                    <option>Business</option>
+                    <option>Arts &amp; Humanities</option>
+                    <option>Science</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="study-year">Year of study</label>
+                  <select id="study-year" name="studyYear" required>
+                    <option value="" disabled selected>Select year</option>
+                    <option>1st year</option>
+                    <option>2nd year</option>
+                    <option>3rd year</option>
+                    <option>4th year</option>
+                    <option>Graduate</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="register-password">Password</label>
+                  <div class="password-wrap">
+                    <input id="register-password" name="password" type="password" placeholder="At least 8 characters" autocomplete="new-password" required>
+                    <button class="visibility-toggle" type="button" data-password-target="register-password" aria-label="Show password" aria-pressed="false">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.2-6 9.5-6 9.5 6 9.5 6-3.2 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="confirm-password">Confirm password</label>
+                  <div class="password-wrap">
+                    <input id="confirm-password" name="confirmPassword" type="password" placeholder="Enter it again" autocomplete="new-password" required>
+                    <button class="visibility-toggle" type="button" data-password-target="confirm-password" aria-label="Show password" aria-pressed="false">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.2-6 9.5-6 9.5 6 9.5 6-3.2 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <p class="form-message" id="register-message" role="status" aria-live="polite"></p>
+              <button class="submit-button" type="submit">Create account <span aria-hidden="true">→</span></button>
+            </form>
+            <p class="switch-prompt">Already have an account? <button class="text-link switch-link" type="button" data-view="login">Sign in</button></p>
+          </section>
+
+          <p class="privacy-note"><span class="lock-icon" aria-hidden="true">⌑</span> Demo mode · Account data is stored in this browser.</p>
+        </div>
+      </section>
+    </section>
+    <footer class="page-footer">© <span id="current-year"></span> CampusConnect <span class="footer-divider">·</span> Made for campus life</footer>
+  </main>
+</body>
+</html>
