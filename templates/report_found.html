@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Report a Found Item | Campus Lost &amp; Found</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('report_found') }}">Campus<span>Find</span></a>
+    <nav aria-label="Main navigation">
+      <a href="{{ url_for('report_found') }}">Home</a>
+      <a href="{{ url_for('report_found') }}">Browse items</a>
+      <a class="nav-active" href="{{ url_for('report_found') }}">Report found item</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <p class="eyebrow">Help reunite someone with their belongings</p>
+      <h1>Report a found item</h1>
+      <p>Share a few details about the item. Please leave out private information
+        that could be used to falsely claim it.</p>
+    </section>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="messages" aria-live="polite">
+          {% for category, message in messages %}
+            <p class="message message-{{ category }}">{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form class="report-card" method="post" enctype="multipart/form-data">
+      <div class="form-grid">
+        <div class="field">
+          <label for="item_name">Item name <span aria-hidden="true">*</span></label>
+          <input id="item_name" name="item_name" type="text" maxlength="100"
+                 placeholder="e.g. Blue water bottle" required
+                 value="{{ form.get('item_name', '') if form else '' }}">
+        </div>
+
+        <div class="field">
+          <label for="category">Category <span aria-hidden="true">*</span></label>
+          <select id="category" name="category" required>
+            <option value="">Select a category</option>
+            {% for category in categories %}
+              <option value="{{ category }}"
+                {% if form and form.get('category') == category %}selected{% endif %}>
+                {{ category }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="field field-wide">
+          <label for="description">Description <span aria-hidden="true">*</span></label>
+          <textarea id="description" name="description" rows="4" maxlength="2000"
+                    placeholder="Describe its colour, brand, or any identifying features"
+                    required>{{ form.get('description', '') if form else '' }}</textarea>
+        </div>
+
+        <div class="field">
+          <label for="location">Where did you find it? <span aria-hidden="true">*</span></label>
+          <input id="location" name="location" type="text" maxlength="200"
+                 placeholder="e.g. Library, second floor" required
+                 value="{{ form.get('location', '') if form else '' }}">
+        </div>
+
+        <div class="field">
+          <label for="found_date">Date found <span aria-hidden="true">*</span></label>
+          <input id="found_date" name="found_date" type="date" max="{{ today }}" required
+                 value="{{ form.get('found_date', '') if form else '' }}">
+        </div>
+
+        <div class="field field-wide">
+          <label for="image">Item photo <span aria-hidden="true">*</span></label>
+          <input id="image" name="image" type="file" accept=".jpg,.jpeg,.png,.webp,image/*" required>
+          <small>JPG, PNG, or WebP; maximum file size 5 MB.</small>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <p>Fields marked <span aria-hidden="true">*</span> are required.</p>
+        <button type="submit">Submit found item</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
